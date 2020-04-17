@@ -62,7 +62,8 @@ string intToRoman(int num) {
     return roman;
 }
 
-/*还有一种自建哈希表的算法*/
+/*还有一种自建哈希表的算法
+*/
 
 int main(){
     int num;
