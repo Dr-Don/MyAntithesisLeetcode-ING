@@ -39,5 +39,5 @@ int main(){
     int target = 1;
     vector<int> nums(num,num+4);
     cout<<threeSumClosest(nums,target)<<endl;
-    system("pause");
+    //system("pause");
 }
