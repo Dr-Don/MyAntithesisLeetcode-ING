@@ -41,6 +41,6 @@ int main(){
     for(int i = 0;i < des.size();i++){
         cout<<des[i]<<endl;
     }
-    system("pause");
+    //system("pause");
     return 0;
 }
