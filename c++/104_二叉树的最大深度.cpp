@@ -26,7 +26,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-/*递归*/
+/*方法一：递归*/
 int maxDepth(TreeNode* root) {
     if(root == NULL) return 0;
     int left = maxDepth(root->left);
@@ -34,7 +34,7 @@ int maxDepth(TreeNode* root) {
     return max(left,right) + 1;
 }
 
-/*DFS*/
+/*方法二：DFS*/
 int DFS(TreeNode* root,int depth){
     if(root == NULL) return depth;
     int left = DFS(root->left,depth+1);
