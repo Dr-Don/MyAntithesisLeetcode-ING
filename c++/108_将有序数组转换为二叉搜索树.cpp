@@ -21,7 +21,10 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <random>
 using namespace std;
+
+Random rand = new Random();
 
 struct TreeNode {
     int val;
@@ -33,6 +36,40 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        
+        if(nums.empty()) return nullptr;
+        return helper1(nums, 0, nums.size()-1);
+    }
+
+    /* 选择中间位置左边的数字为根节点 */
+    TreeNode* helper1(vector<int>& nums, int left,int right){
+        if(left > right) return nullptr;
+
+        int mid = (left + right)/2;
+        TreeNode* root = new TreeNode(nums[mid]);
+        root->left = helper1(nums, left, mid-1);
+        root->right = helper1(nums, mid + 1, right);
+        return root;
+    }
+
+    /* 选择中间位置右边的数字为根节点 */
+    TreeNode* helper2(vector<int>& nums, int left,int right){
+        if(left > right) return nullptr;
+
+        int mid = (left + right + 1)/2;
+        TreeNode* root = new TreeNode(nums[mid]);
+        root->left = helper2(nums, left, mid-1);
+        root->right = helper2(nums, mid + 1, right);
+        return root;
+    }
+
+    /* 选择中间位置两边的任意一个节点为根节点 */
+    TreeNode* helper3(vector<int>& nums, int left,int right){
+        if(left > right) return nullptr;
+
+        int mid = (left + right + rand.nextInt(2))/2;
+        TreeNode* root = new TreeNode(nums[mid]);
+        root->left = helper3(nums, left, mid-1);
+        root->right = helper3(nums, mid + 1, right);
+        return root;
     }
 };
