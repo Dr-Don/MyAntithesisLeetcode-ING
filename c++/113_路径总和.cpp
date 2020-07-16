@@ -35,3 +35,23 @@ struct TreeNode {
 	TreeNode* right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
+/* DFS+回溯 */
+class Solution {
+	vector<vector<int>> res;
+	vector<int> path;
+public:
+	vector<vector<int>> pathSum(TreeNode* root, int sum) {
+		if(root) dfs(root, sum);
+		return res;
+	}
+
+	void dfs(TreeNode* root, int sum) {
+		int num = sum - root->val;
+		path.push_back(root->val);
+		if (num == 0 && !root->left && !root->right) res.push_back(path);
+		if (root->left) dfs(root->left, num);
+		if (root->right) dfs(root->right, num);
+		path.pop_back();
+	}
+};
