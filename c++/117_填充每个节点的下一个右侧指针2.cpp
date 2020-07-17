@@ -1,5 +1,5 @@
 ﻿/*
-给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+给定一个二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
 
 struct Node {
   int val;
@@ -41,13 +41,8 @@ public:
 
 class Solution {
 public:
-	/* 解法一：使用已建立的next指针 */
+	/* 解法一：在当前层时,把下一层第一个节点用dummy记录下来,然后遍历当前层的时候,把下面一层串起来,当前层遍历完,通过dummy可以开始下一层的遍历(同样重复上述, 将dummy记录下下层第一个节点,然后遍历该层, 并把下面一层串起来) */
 	Node* connect(Node* root) {
-		if (root == nullptr) return root;
-		if (root->left) root->left->next = root->right;
-		if (root->right) root->right->next = root->next != nullptr ? root->next->left : nullptr;
-		connect(root->left);
-		connect(root->right);
-		return root;
+		
 	}
 };
