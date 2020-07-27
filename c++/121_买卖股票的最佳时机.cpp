@@ -22,11 +22,12 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <limits.h>
 using namespace std;
 
 class Solution {
 public:
-    /* 动态规划 
+    /* 动态规划1
     本题要求的其实是卖出时与买入时的最大差值。我们不妨假设f(i)表示以第i天为结尾时卖出股票获得的最大收入（差值），
     那么最后要求的是：f(i) = max{f(i)| 1 <= i <= n>>};
     而f(i)其实还与f(i-1)有关，f(i-1) = p[i-1] - minValue, 
@@ -46,6 +47,17 @@ public:
         return maxVal;
     }
 
+    /* 动态规划2 */
+    int maxProfit(vector<int>& prices) {
+        if(!prices.size()) return 0;
+        int n = prices.size();
+        int dp_i_0 = 0, dp_i_1 = -prices[0];
+        for(int i = 0; i<n; i++){
+            dp_i_0 = max(dp_i_0, dp_i_1 + prices[i]);
+            dp_i_1 = max(dp_i_1, -prices[i]);
+        }
+        return dp_i_0;
+    }
     /* 使用到哨兵的单调栈 */
     int maxProfit(vector<int>& prices){
         int res = 0;
