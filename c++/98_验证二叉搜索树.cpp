@@ -32,6 +32,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <stack>
+#include <limits.h>
 using namespace std;
 
 struct TreeNode {
@@ -43,7 +44,24 @@ struct TreeNode {
 
 class Solution {
 public:
+    /* 方法一：递归 */
     bool isValidBST(TreeNode* root) {
-        
+        return helper(root, LONG_MIN, LONG_MAX);
+    }
+
+    bool helper(TreeNode* root, long long lower,long long upper){
+        if(root == nullptr) return true;
+        if(root->val <= lower || root->val >= upper) return false;
+        return helper(root->left, lower, root->val) && helper(root->right, root->val, upper);
+    }
+
+    /* 方法二：中序遍历 */
+    long pre = LONG_MIN;
+    bool isValidBST(TreeNode* root) {
+        if(root == nullptr) return true;
+        if(!isValidBST(root->left)) return false;
+        if(root->val <= pre) return false;
+        pre = root->val;
+        return isValidBST(root->right);
     }
 };
