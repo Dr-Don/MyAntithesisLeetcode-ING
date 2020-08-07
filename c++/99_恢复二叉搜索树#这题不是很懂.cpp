@@ -73,6 +73,7 @@ public:
                 root = root->left;
             }
             root = s.top();
+            s.pop();
             if(pred && root->val < pred->val){
                 y = root;
                 if(x == nullptr) x = pred;
@@ -85,5 +86,6 @@ public:
     }
 
     /* 方法二：递归中序遍历 */
-    
+
+
 };

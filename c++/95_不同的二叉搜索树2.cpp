@@ -50,6 +50,8 @@ public:
     返回序列 [start,end] 生成的所有可行的二叉搜索树。按照上文的思路，
     我们考虑枚举 [start,end] 中的值 ii 为当前二叉搜索树的根，
     那么序列划分为了 [start,i−1] 和[i+1,end] 两部分。
+
+    
     我们递归调用这两部分，即 generateTrees(start, i - 1) 和 generateTrees(i + 1, end)*/
 
     vector<TreeNode*> helper(int start, int end){
