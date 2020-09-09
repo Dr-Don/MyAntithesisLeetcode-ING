@@ -30,11 +30,11 @@ void backtrack(vector<vector<int>>& res, vector<int>& output, int first, int len
   }
   for(int i = first;i < len; i++){
     // 2. 动态维护数组
-    std::swap(output[i], output[first]);
+    swap(output[i], output[first]);
     // 3. 继续递归听下一个数
     backtrack(res, output, first+1, len);
     // 4. 撤销，返回上一个状态,这一步有点妙
-    std::swap(output[i], output[first]);
+    swap(output[i], output[first]);
   }
 }
 
@@ -46,4 +46,9 @@ vector<vector<int>> permute(vector<int>& nums){
 
 int main(){
 
+}
+
+/*�ݹ�*/
+vector<vector<int>> permute(vector<int>& nums) {
+	   
 }
